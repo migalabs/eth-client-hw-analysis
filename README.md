@@ -20,6 +20,12 @@ It merely needs the Python interpreter to run it and to install the dependencies
 To launch the clients we have developed a repository to automatize running the clients using a docker-compose file. Please refer [here](https://github.com/migalabs/eth2-clients-setup) to discover more about it.
 
 
+## Data
+
+Data has been collected from Prometheus and from a Python script developed by us to double check the Prometheus data is correct.
+You may see the download script from Prometheus in the `download_data` folder.
+The Python project can be found [here](https://github.com/migalabs/eth2-client-analyzer).
+
 ## Configuration Instructions
 
 The Execution command looks like the following:
@@ -28,7 +34,7 @@ The Execution command looks like the following:
 python3 plot_data.py <config-file> csv-files
 
 Example:
-python3 plot_data.py configs/config_plot_NEvs_cpu.ini mainnet2/grandine_sample_13300.csv mainnet2/NE_grandine.csv
+python3 plot_data.py configs/config_plot_NEvs_cpu.ini mainnet2/grandine_sample.csv mainnet2/NE_grandine.csv
 
 ```
 Keep in mind that there are several different keywords we can give as metricType argument:
