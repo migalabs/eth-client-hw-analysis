@@ -70,5 +70,5 @@ STORE_PATH = figures/mainnet/disk/sync_grandine_NE
 ## Execution
 
 We have enabled a set of scripts that automatically execute the given plots with the data we collected a year ago. You may refer to the plot_scripts which automatically plot the data for the given csv files.
-We have also included the download script, which retrieves data from Prometheus and stores in a CSV file. This is not needed as we have uploaded the CSV files directly.
+We have also included the download script, which retrieves data from Prometheus and stores in a CSV file.
 This set of plots was used in May 2022 to perform the Resource Analysis V1. 
