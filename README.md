@@ -1,4 +1,4 @@
-# eth-client-hw-analysis V2
+# Ethereum Consensus Clients Hardware Analysis V2
 This repository collects all the images and scripts used in the Ethereum Consensus Client's hardware resource analysis. 
 
 ## The Analysis
