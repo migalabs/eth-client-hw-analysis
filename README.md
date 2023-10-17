@@ -1,5 +1,5 @@
 # Ethereum Consensus Clients Hardware Analysis V2
-This repository collects all the images and scripts used in the Ethereum Consensus Client's hardware resource analysis. 
+This repository collects all the scripts and generates the figures used in the Ethereum Consensus Client's hardware resource analysis. 
 
 ## The Analysis
 This Analysis was performed during the month of May in 2023.
