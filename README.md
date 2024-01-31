@@ -19,8 +19,9 @@ Caddy is a Proxy server which will receive all the incoming traffic and redirect
 
 1. Copy `Caddyfile.sample` into `Caddyfile`
 2. You may configure some credentials if needed.
-3. Run `docker-compose up -d prometheus victoriametrics caddy` 
-4. You may now use `http://user:password@yourIP/promhttp/api/v1/write` and `http://user:password@yourIP/victoria/api/v1/write` as remote write
+3. Copy `prometheus-template.yml` into `prometheus.yml` (prometheus folder). You may comment all the scrapes as this prometheus will be a server receiving the data.
+4. Run `docker-compose up -d prometheus victoriametrics caddy` 
+5. You may now use `http://user:password@yourIP/promhttp/api/v1/write` and `http://user:password@yourIP/victoria/api/v1/write` as remote write
 
 ### Clients
 

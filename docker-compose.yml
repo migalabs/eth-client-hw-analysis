@@ -37,9 +37,9 @@ services:
       - NETHERMIND_NETWORKCONFIG_DISCOVERYPORT=30303
       - NETHERMIND_NETWORKCONFIG_P2PPORT=30303
     volumes:
-      - ${NETH_LH_DATA_FOLDER:-./apps-data}/.nethermind-lh/nethermind_db:/nethermind/nethermind_db
-      - ${NETH_LH_DATA_FOLDER:-./apps-data}/.nethermind-lh/logs:/nethermind/logs
-      - ${NETH_LH_DATA_FOLDER:-./apps-data}/.nethermind-lh/keystore:/nethermind/keystore
+      - ${DATA_FOLDER:-./apps-data}/.nethermind-lh/nethermind_db:/nethermind/nethermind_db
+      - ${DATA_FOLDER:-./apps-data}/.nethermind-lh/logs:/nethermind/logs
+      - ${DATA_FOLDER:-./apps-data}/.nethermind-lh/keystore:/nethermind/keystore
       - ./data:/tmp/ethereum
 
 # -----------------------------------------------------------------------------
@@ -81,7 +81,7 @@ services:
       --jwt-secrets=/tmp/ethereum/jwtsecret
 
     volumes:
-      - ${LH_DATA_FOLDER:-./apps-data}/.lighthouse:/lighthousedb
+      - ${DATA_FOLDER:-./apps-data}/.lighthouse:/lighthousedb
       - ./data:/tmp/ethereum
 
   prysm:
@@ -105,7 +105,7 @@ services:
       --jwt-secret=/tmp/ethereum/jwtsecret
       --log-file=/prysmdb/prysm.log
     volumes:
-      - ${PRYSM_DATA_FOLDER:-./apps-data}/.prysm:/prysmdb
+      - ${DATA_FOLDER:-./apps-data}/.prysm:/prysmdb
       - ./data:/tmp/ethereum
   
   teku:
@@ -132,7 +132,7 @@ services:
       --beacon-liveness-tracking-enabled=true
 
     volumes:
-      - ${TEKU_DATA_FOLDER:-./apps-data}/.teku:/tekudb
+      - ${DATA_FOLDER:-./apps-data}/.teku:/tekudb
       - ./data:/tmp/ethereum
   
   nimbus-trusted-sync:
@@ -147,7 +147,7 @@ services:
       --trusted-node-url="${CHECKPOINT_SYNC_URL:-}"
       --data-dir=/nimbusdb
     volumes:
-      - ${NIMBUS_DATA_FOLDER:-./apps-data}/.nimbus:/nimbusdb
+      - ${DATA_FOLDER:-./apps-data}/.nimbus:/nimbusdb
       - ./data:/tmp/ethereum
 
   nimbus:
@@ -171,7 +171,7 @@ services:
       --metrics-address=0.0.0.0
 
     volumes:
-      - ${NIMBUS_DATA_FOLDER:-./apps-data}/.nimbus:/nimbusdb
+      - ${DATA_FOLDER:-./apps-data}/.nimbus:/nimbusdb
       - ./data:/tmp/ethereum
   
   lodestar:
@@ -198,7 +198,7 @@ services:
       
 
     volumes:
-      - ${LODESTAR_DATA_FOLDER:-./apps-data}/.lodestar:/lodestardb
+      - ${DATA_FOLDER:-./apps-data}/.lodestar:/lodestardb
       - ./data:/tmp/ethereum
 
 # -----------------------------------------------------------------------------
@@ -249,23 +249,24 @@ services:
     network_mode: 'host'
     volumes:
       - ./prometheus/:/etc/prometheus/
-      - ./apps-data/.prometheus:/prometheus/data
+      - ${DATA_FOLDER:-./apps-data}.prometheus:/prometheus/data
   
   victoriametrics:
     container_name: victoriametrics
     image: victoriametrics/victoria-metrics:v1.95.1
     ports:
       - "127.0.0.1:${VICTORIA_PORT:-8428}:8428"
-    volumes:
-      - ./apps-data/.victoria:/storage
+    networks:
+      - cluster
+    restart: always
     command:
       - "--storageDataPath=/storage"
       - "--httpListenAddr=0.0.0.0:8428"
       - "--http.pathPrefix=/victoria"
       - "--search.maxPointsPerTimeseries=100000"
-    networks:
-      - cluster
-    restart: always
+    
+    volumes:
+      - ${DATA_FOLDER:-./apps-data}.victoria:/storage
 
   grafana:
     image: grafana/grafana:10.3.1-ubuntu

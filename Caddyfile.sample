@@ -43,7 +43,6 @@ http:// {
         }
         handle @victoria {
                 reverse_proxy http://localhost:8428
-                uri strip_prefix /victoria
         }
         basicauth @victoria {
                 import authorised-users

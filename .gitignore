@@ -1,2 +1,7 @@
 venv/
 *.zip
+.env
+Caddyfile
+apps-data/**
+data/**
+prometheus/prometheus.yml

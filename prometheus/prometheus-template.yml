@@ -26,8 +26,8 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9100']
 
-    - job_name: 'nethermind'
-      static_configs:
+  - job_name: 'nethermind'
+    static_configs:
       - targets: ['localhost:8645']
 
   # - job_name: 'lighthouse'
