@@ -1,0 +1,59 @@
+# Sample config for Prometheus.
+
+global:
+  scrape_interval:     12s # Set the scrape interval to every 12 seconds (once per slot)
+  evaluation_interval: 12s # Evaluate rules every 12 seconds (once per slot)
+
+  external_labels:
+      server: 'server_ip'
+      project_name: 'project_name'
+
+remote_write:
+  - url: http://user:password@yourIP/promhttp/api/v1/write
+  - url: http://user:password@yourIP/victoria/api/v1/write
+
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: node
+    # If prometheus-node-exporter is installed, grab stats about the local machine by default.
+    # More detailed interval: it is a resource analysis.
+    scrape_interval: 1s
+    scrape_timeout: 1s
+    static_configs:
+      - targets: ['localhost:9100']
+
+    - job_name: 'nethermind'
+      static_configs:
+      - targets: ['localhost:8645']
+
+  # - job_name: 'lighthouse'
+  #   static_configs:
+  #     - targets: ['localhost:5054']
+  
+  # - job_name: 'prysm'
+  #   static_configs:
+  #     - targets: ['localhost:8080']
+
+  # - job_name: 'teku'
+  #   static_configs:
+  #     - targets: ['localhost:8008']
+
+  # - job_name: 'nimbus'
+  #   static_configs:
+  #     - targets: ['localhost:8008']
+
+  # - job_name: 'lodestar'
+  #   static_configs:
+  #     - targets: ['localhost:8008']
+  
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['localhost:8090']
+
+  # - job_name: 'caddy'
+  #   static_configs:
+  #     - targets: ['localhost:2019']

@@ -1,0 +1,51 @@
+{
+    servers {
+        metrics
+    }
+}
+
+(whitelistIP) {
+                remote_ip 0.0.0.0/0
+        }
+
+# Access to everything.
+(authorised-users) {
+}
+
+http:// {
+        log {
+                output stderr
+                format filter {
+                        wrap console
+                        fields {
+                                request>headers>Authorization delete
+                        }
+                }
+        }
+
+		# ------------------------- Prometheus --------------------------
+		@prometheus {
+                import whitelistIP
+                path /promhttp/*
+        }
+        handle @prometheus {
+                reverse_proxy http://localhost:9090
+                uri strip_prefix /promhttp
+        }
+		basicauth @prometheus {
+			import authorised-users
+		}
+
+		# ------------------------- Victoria Metrics --------------------------
+        @victoria {
+                import whitelistIP
+                path /victoria/*
+        }
+        handle @victoria {
+                reverse_proxy http://localhost:8428
+                uri strip_prefix /victoria
+        }
+        basicauth @victoria {
+                import authorised-users
+        }
+}
