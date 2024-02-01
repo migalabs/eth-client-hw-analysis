@@ -49,6 +49,10 @@ scrape_configs:
   # - job_name: 'lodestar'
   #   static_configs:
   #     - targets: ['localhost:8008']
+
+  # - job_name: 'grandine'
+  #   static_configs:
+  #     - targets: ['localhost:5054']
   
   - job_name: 'cadvisor'
     static_configs:

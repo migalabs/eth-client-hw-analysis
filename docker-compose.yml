@@ -197,10 +197,33 @@ services:
       --metrics.address=0.0.0.0
       --listenAddress=0.0.0.0
       --rest.address=0.0.0.0
-      
 
     volumes:
       - ${DATA_FOLDER:-./apps-data}/.lodestar:/lodestardb
+      - ./data:/tmp/ethereum
+  
+  grandine:
+    image: sifrai/grandine:${GRANDINE_TAG}
+    restart: unless-stopped
+    init: true
+    networks: [ cluster ]
+    ports:
+      - "127.0.0.1:5054:5054" # Prometheus metrics
+      - "127.0.0.1:5052:5052" # Rest port
+      - "9000:9000" # P2P port
+    command: >-
+      grandine
+      --network=${NETWORK}
+      --data-dir=/grandinedb
+      --checkpoint-sync-url=${CHECKPOINT_SYNC_URL}
+      --eth1-rpc-urls="http://nethermind:8551"
+      --jwt-secret="/tmp/ethereum/jwtsecret"
+      --metrics
+      --metrics-address=0.0.0.0
+      --http-address=0.0.0.0
+    
+    volumes:
+      - ${DATA_FOLDER:-./apps-data}/.grandine:/grandinedb
       - ./data:/tmp/ethereum
 
 # -----------------------------------------------------------------------------
