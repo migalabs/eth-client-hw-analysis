@@ -37,9 +37,9 @@ services:
       - NETHERMIND_NETWORKCONFIG_DISCOVERYPORT=30303
       - NETHERMIND_NETWORKCONFIG_P2PPORT=30303
     volumes:
-      - ${DATA_FOLDER:-./apps-data}/.nethermind-lh/nethermind_db:/nethermind/nethermind_db
-      - ${DATA_FOLDER:-./apps-data}/.nethermind-lh/logs:/nethermind/logs
-      - ${DATA_FOLDER:-./apps-data}/.nethermind-lh/keystore:/nethermind/keystore
+      - ${DATA_FOLDER:-./apps-data}/.nethermind/nethermind_db:/nethermind/nethermind_db
+      - ${DATA_FOLDER:-./apps-data}/.nethermind/logs:/nethermind/logs
+      - ${DATA_FOLDER:-./apps-data}/.nethermind/keystore:/nethermind/keystore
       - ./data:/tmp/ethereum
 
 # -----------------------------------------------------------------------------
@@ -118,6 +118,8 @@ services:
       - "127.0.0.1:8008:8008" # Prometheus metrics
       - "127.0.0.1:5051:5051" # Rest port
       - "9000:9000" # P2P port
+    environment:
+      - JAVA_OPTS=-Xmx5g
     command: >-
       --data-base-path=/tekudb
       --network=${NETWORK}
