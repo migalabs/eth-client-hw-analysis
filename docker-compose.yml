@@ -251,7 +251,7 @@ services:
     network_mode: 'host'
     volumes:
       - ./prometheus/:/etc/prometheus/
-      - ${DATA_FOLDER:-./apps-data}.prometheus:/prometheus/data
+      - ${DATA_FOLDER:-./apps-data}/.prometheus:/prometheus/data
   
   victoriametrics:
     container_name: victoriametrics
@@ -268,7 +268,7 @@ services:
       - "--search.maxPointsPerTimeseries=100000"
     
     volumes:
-      - ${DATA_FOLDER:-./apps-data}.victoria:/storage
+      - ${DATA_FOLDER:-./apps-data}/.victoria:/storage
 
   grafana:
     image: grafana/grafana:10.3.1-ubuntu
