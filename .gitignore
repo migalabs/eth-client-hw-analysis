@@ -5,3 +5,5 @@ Caddyfile
 apps-data/**
 data/**
 prometheus/prometheus.yml
+mainnet/
+*pycache*

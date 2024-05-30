@@ -1,14 +1,14 @@
-# Ethereum Consensus Clients Hardware Analysis V2
+# Ethereum Consensus Clients Hardware Analysis V3
 This repository collects all the scripts and generates the figures used in the Ethereum Consensus Client's hardware resource analysis. 
 
 ## The Analysis
-This Analysis was performed during the month of May in 2023.
-It consisted of running the 5 main clients (Prysm, Lighthouse, Teku, Nimbus and Lodestar)
+This Analysis was performed during the months of February 2024 and May 2024.
+It consisted of running the 6 main clients (Prysm, Lighthouse, Teku, Nimbus, Lodestar and Grandine)
 
 ## Running the clients
 
 Inside this repository you may find several files with which you launch the nodes you intend to analyze.
-The setup includes an execution node (always Nethermind), a consensus node (Lighthouse, Prysm, Teku, Nimbus, Lodestar) and some monitoring tools (such as Prometheus, Node Exporter or CAdvisor)
+The setup includes an execution node (always Nethermind), a consensus node (Lighthouse, Prysm, Teku, Nimbus, Lodestar, Grandine) and some monitoring tools (such as Prometheus, Node Exporter or CAdvisor)
 
 ### Server
 
@@ -40,8 +40,6 @@ After the execution, you may find several CSV files have been downloaded (under 
 ## Data Plotting
 
 Data has been plotted using the same Jupyter Notebook `report.ipynb`. The last page contains details about the plots. These plots are built from the CSV files downloaded previously with the same document.
-
-
 
 
 Maintained by [MigaLabs](http://migalabs.io)
