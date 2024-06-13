@@ -2,37 +2,115 @@ from base import *
 
 
 def main():
-	# download_cpu()
-	# # download_cpu_per_second_default()
-	# # download_cpu_per_second_all_topics()
 
-	# download_mem()
-	# download_mem_without_rss()
+	lstart_time = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%SZ')
+	lend_time = datetime.strptime(end_time, '%Y-%m-%dT%H:%M:%SZ')
 
-	# download_net_receive()
-	# download_net_receive_packets()
-	# # download_net_receive_per_second_default()
-	# # download_net_receive_per_second_all_topics()
+	tmp_time = lstart_time
 
-	# download_net_transmit()
-	# download_net_transmit_packets()
-	# # download_net_transmit_per_second_default()
+	while tmp_time < lend_time:
+		
+		print("Downloading at ", tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
+		download_cpu(
+			tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		
+		# download_cpu_per_second_default(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+		#(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+		#step="1s")
+		# download_cpu_per_second_all_topics(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			#(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			#step="1s")
 
-	# download_peers()
+		download_mem(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		download_mem_without_rss(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
 
-	# download_fs_read_bytes()
-	# download_fs_read_ops()
+		download_net_receive(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		download_net_receive_packets(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		download_net_receive_per_second_default(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		download_net_receive_per_second_all_topics(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
 
-	# download_fs_write_bytes()
-	# download_fs_write_ops()
+		download_net_transmit(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		download_net_transmit_packets(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		# download_net_transmit_per_second_default(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			#(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			#step="1s")
 
-	# download_disk_usage()
+		download_peers(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
 
-	download_block_proposals()
+		download_fs_read_bytes(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		download_fs_read_ops(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
 
+		download_fs_write_bytes(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+		download_fs_write_ops(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+
+		download_disk_usage(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
+
+		# download_block_proposals()
+			
+		tmp_time = tmp_time + timedelta(hours=3)
+
+
+def main_20m():
+		# download_cpu()
+		# download_cpu_per_second_default()
+		# download_cpu_per_second_all_topics()
+
+		# download_mem()
+		# download_mem_without_rss()
+
+		# download_net_receive()
+		# download_net_receive_packets()
+		download_net_receive_per_second_default()
+		download_net_receive_per_second_all_topics()
+
+		# download_net_transmit()
+		download_net_transmit_packets()
+		download_net_transmit_per_second_default()
+
+		# download_peers()
+
+		# download_fs_read_bytes()
+		# download_fs_read_ops()
+
+		# download_fs_write_bytes()
+		# download_fs_write_ops()
+
+		# download_disk_usage()
+
+		# # download_block_proposals()
 	
 
-def download_cpu():
+def download_cpu(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		sum by 
 			(container_label_com_docker_compose_service, container_label_com_docker_compose_project, image, server, project_name) 
@@ -43,15 +121,15 @@ def download_cpu():
 	metric_name = 'cpu'
 	print(f"""Downloading {metric_name} for {phase}...""")
 
-	response = ask_range_with_step(query, start_time, end_time)
+	response = ask_range_with_step(query, start_time, end_time, step=step)
 
 	data_to_csv(response, metric_name)
 
-def download_cpu_per_second_default():
+def download_cpu_per_second_default(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		sum by 
 			(container_label_com_docker_compose_service, container_label_com_docker_compose_project, image, server, project_name) 
-		(increase(node_cpu_seconds_total{{mode!="idle"}}[2s]))
+		(increase(node_cpu_seconds_total{{mode!="idle"}}[1m]))
 			/ on(server) group_left() 
 				machine_cpu_cores * 100
 			/ 2
@@ -60,18 +138,18 @@ def download_cpu_per_second_default():
 	print(f"""Downloading {metric_name} for {phase}...""")
 
 	response = ask_range(query, default_time, shift_timestamp(default_time, 3))
-	for idx, metric in enumerate(response):
+	for idx, metric in enumerate(responsestart_time=start_time, end_time=end_time, step=step):
 		ip = metric["metric"]["server"]
 		metric["metric"]["image"] = cl_ip[str(ip)]
 		response[idx] = metric
 
 	data_to_csv(response, metric_name)
 
-def download_cpu_per_second_all_topics():
+def download_cpu_per_second_all_topics(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		sum by 
 			(container_label_com_docker_compose_service, container_label_com_docker_compose_project, image, server, project_name) 
-		(increase(node_cpu_seconds_total{{mode!="idle"}}[2s]))
+		(increase(node_cpu_seconds_total{{mode!="idle"}}[1m]))
 			/ on(server) group_left() 
 				machine_cpu_cores * 100
 			/ 2
@@ -80,7 +158,7 @@ def download_cpu_per_second_all_topics():
 	print(f"""Downloading {metric_name} for {phase}...""")
 
 	response = ask_range(query, all_subnets_time, shift_timestamp(all_subnets_time, 3))
-	for idx, metric in enumerate(response):
+	for idx, metric in enumerate(responsestart_time=start_time, end_time=end_time, step=step):
 		ip = metric["metric"]["server"]
 		metric["metric"]["image"] = cl_ip[str(ip)]
 		response[idx] = metric
@@ -89,7 +167,7 @@ def download_cpu_per_second_all_topics():
 
 
 
-def download_mem():
+def download_mem(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		container_memory_working_set_bytes / 1024 / 1024 / 1024
 	"""
@@ -101,7 +179,7 @@ def download_mem():
 
 	data_to_csv(response, metric_name)
 
-def download_mem_without_rss():
+def download_mem_without_rss(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		(container_memory_working_set_bytes-container_memory_rss) / 1024 / 1024 / 1024
 	"""
@@ -113,7 +191,7 @@ def download_mem_without_rss():
 
 	data_to_csv(response, metric_name)
 
-def download_net_receive():
+def download_net_receive(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		rate(
 			container_network_receive_bytes_total[1m]
@@ -128,7 +206,7 @@ def download_net_receive():
 	data_to_csv(response, metric_name)
 
 
-def download_net_receive_packets():
+def download_net_receive_packets(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		rate(
 			container_network_receive_packets_total[1m]
@@ -142,10 +220,10 @@ def download_net_receive_packets():
 
 	data_to_csv(response, metric_name)
 
-def download_net_receive_per_second_default():
+def download_net_receive_per_second_default(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		increase(
-			node_network_receive_bytes_total[2s]
+			node_network_receive_bytes_total{{device="ens3"}}[2s]
 		) / 1024 / 1024 / 2
 	"""
 	metric_name = 'net_receive_per_second_default'
@@ -159,10 +237,10 @@ def download_net_receive_per_second_default():
 	data_to_csv(response, metric_name)
 
 
-def download_net_receive_per_second_all_topics():
+def download_net_receive_per_second_all_topics(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		increase(
-			node_network_receive_bytes_total[2s]
+			node_network_receive_bytes_total{{device="ens3"}}[2s]
 		) / 1024 / 1024 / 2
 	"""
 	metric_name = 'net_receive_per_second_all_topics'
@@ -177,7 +255,7 @@ def download_net_receive_per_second_all_topics():
 	data_to_csv(response, metric_name)
 
 
-def download_net_transmit():
+def download_net_transmit(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		rate(
 			container_network_transmit_bytes_total[1m]
@@ -191,35 +269,57 @@ def download_net_transmit():
 
 	data_to_csv(response, metric_name)
 
-def download_net_transmit_packets():
+
+def download_net_transmit_per_second_default(start_time=start_time, end_time=end_time, step=step):
+	query = f"""
+		increase(
+			node_network_transmit_bytes_total{{device="ens3"}}[2s]
+		) / 1024 / 1024 / 2
+	"""
+	metric_name = 'net_transmit_per_second_default'
+	print(f"""Downloading {metric_name} for {phase}...""")
+
+	response = ask_range(query, default_time, shift_timestamp(default_time, 3))
+	for idx, metric in enumerate(response):
+		ip = metric["metric"]["server"]
+		metric["metric"]["image"] = cl_ip[str(ip)]
+		response[idx] = metric
+	data_to_csv(response, metric_name)
+
+
+def download_net_transmit_per_second_all_topics(start_time=start_time, end_time=end_time, step=step):
+	query = f"""
+		increase(
+			node_network_transmit_bytes_total{{device="ens3"}}[2s]
+		) / 1024 / 1024 / 2
+	"""
+	metric_name = 'net_transmit_per_second_all_topics'
+	print(f"""Downloading {metric_name} for {phase}...""")
+
+	response = ask_range(query, all_subnets_time, shift_timestamp(all_subnets_time, 3))
+	for idx, metric in enumerate(response):
+		ip = metric["metric"]["server"]
+		metric["metric"]["image"] = cl_ip[str(ip)]
+		response[idx] = metric
+
+	data_to_csv(response, metric_name)
+
+def download_net_transmit_packets(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		rate(
 			container_network_transmit_packets_total[1m]
 		)
 	"""
 
-	metric_name = 'net_transmit_packets'
+	metric_name = 'net_receive_packets'
 	print(f"""Downloading {metric_name} for {phase}...""")
 
 	response = ask_range_with_step(query, start_time, end_time)
 
 	data_to_csv(response, metric_name)
 
-def download_net_transmit_per_second_default():
-	query = f"""
-		rate(
-			container_network_transmit_bytes_total[2s]
-		) / 1024 / 1024
-	"""
-	metric_name = 'net_transmit_per_second_default'
-	print(f"""Downloading {metric_name} for {phase}...""")
 
-	response = ask_range(query, default_blocks_time, "2024-02-12T15:33:59Z")
-
-	data_to_csv(response, metric_name)
-
-
-def download_peers():
+def download_peers(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		libp2p_peers
 	"""
@@ -244,7 +344,7 @@ def download_peers():
 	data_to_csv(response, metric_name)
 
 
-def download_fs_read_bytes():
+def download_fs_read_bytes(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		sum by (
 			container_label_com_docker_compose_config_hash, 
@@ -265,7 +365,7 @@ def download_fs_read_bytes():
 	data_to_csv(response, metric_name)
 
 
-def download_fs_write_bytes():
+def download_fs_write_bytes(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		sum by (
 			container_label_com_docker_compose_config_hash, 
@@ -285,7 +385,7 @@ def download_fs_write_bytes():
 
 	data_to_csv(response, metric_name)
 
-def download_fs_read_ops():
+def download_fs_read_ops(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		sum by (
 			container_label_com_docker_compose_config_hash, 
@@ -305,7 +405,7 @@ def download_fs_read_ops():
 
 	data_to_csv(response, metric_name)
 
-def download_fs_write_ops():
+def download_fs_write_ops(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		sum by (
 			container_label_com_docker_compose_config_hash, 
@@ -326,7 +426,7 @@ def download_fs_write_ops():
 	data_to_csv(response, metric_name)
 
 
-def download_disk_usage():
+def download_disk_usage(start_time=start_time, end_time=end_time, step=step):
 	query = f"""
 		(node_filesystem_size_bytes{{mountpoint=~"/mnt/disk"}}-node_filesystem_avail_bytes{{mountpoint=~"/mnt/disk"}})
 		/ 1024 / 1024 / 1024
@@ -343,7 +443,7 @@ def download_disk_usage():
 
 	data_to_csv(response, metric_name)
 
-def download_block_proposals():
+def download_block_proposals(start_time=start_time, end_time=end_time, step=step):
 
 	metric_name = 'block_proposals'
 
@@ -356,7 +456,23 @@ def download_block_proposals():
 	print(f"""Downloading {metric_name} for {phase}...""")
 	psql_query_to_csv(query, metric_name)
 
+# def download_by_intervals(start_time=start_time, end_time=end_time, step=step):
+# 	start_time = datetime.strptime(i_start_time, '%Y-%m-%dT%H:%M:%SZ')
+# 	end_time = datetime.strptime(i_end_time, '%Y-%m-%dT%H:%M:%SZ')
+
+# 	tmp_time = start_time
+# 	total_response = []
+
+# 	while tmp_time < end_time:
+# 		print("Downloading at ", tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"))
+# 		download_cpu(
+# 			tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+# 			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+# 			step="1s")
+# 		tmp_time = tmp_time + timedelta(hours=3)
+# 	return total_response
+# 
 
 
 if __name__ == "__main__":
-	main()
+	main_20m()

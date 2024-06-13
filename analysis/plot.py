@@ -3,20 +3,20 @@ import plotly.graph_objects as go
 
 def main():
 	# plot_cpu()
-	# # plot_cpu_per_second_default()
-	# # plot_cpu_per_second_all_topics()
+	# plot_cpu_per_second_default()
+	# plot_cpu_per_second_all_topics()
 
 	# plot_mem()
 	# plot_mem_without_rss()
 
 	# plot_net_receive()
 	# plot_net_receive_packets()
-	# # plot_net_receive_per_second_default()
-	# # plot_net_receive_per_second_all_topics()
+	plot_net_receive_per_second_default()
+	# plot_net_receive_per_second_all_topics()
 
 	# plot_net_transmit()
 	# plot_net_transmit_packets()
-	# # plot_net_transmit_per_second_default()
+	# plot_net_transmit_per_second_default()
 
 	# plot_peers()
 
@@ -28,7 +28,7 @@ def main():
 
 	# plot_disk_usage()
 
-	plot_block_proposals()
+	# plot_block_proposals()
 
 
 def plot_cpu():
@@ -361,16 +361,35 @@ def plot_disk_usage():
 
 def plot_block_proposals():
 
-	metric_name = 'block_proposals'
+	metric = 'block_proposals'
+	df = import_blocks_csv(metric)
+	df['epoch'] = df['f_slot'] // 32
+	df['epoch_time'] = (df['epoch'] * 384) + genesis_unix_time
+	df['date'] = pd.to_datetime(df['epoch_time'], unit='s')
 
-	query = f"""
-		select *
-		from t_score_metrics
-		where (f_slot/32) > {start_epoch} and (f_slot/32) < {end_epoch}
-	"""
+	df_grouped = df.groupby(['date', 'epoch', 'f_client_name']).agg(
+		proposed_blocks=pd.NamedAgg(column="f_score", aggfunc=lambda x: (x>0).sum()),
+		missed_blocks=pd.NamedAgg(column="f_score", aggfunc=lambda x: (x<0).sum()),
+	).reset_index()
 
-	print(f"""ploting {metric_name} for {phase}...""")
-	psql_query_to_csv(query, metric_name)
+	fig = go.Figure()
+	for client, data in df_grouped.groupby('f_client_name'):
+			fig.add_trace(
+				go.Scatter(
+					x=data["date"], 
+					y=data["proposed_blocks"], 
+					name=client, 
+					mode='lines', 
+					line=go.scatter.Line(color=colors[client.lower()])))
+
+	fig = decorate_fig(fig)
+
+	fig.update_layout(
+		title='Proposed Blocks Per Epoch',
+		xaxis_title="Date",
+	)
+	# fig.show()
+	fig.write_html(fig_folder + metric + '.html')
 
 
 

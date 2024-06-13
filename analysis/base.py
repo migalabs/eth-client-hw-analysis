@@ -20,6 +20,11 @@ colors = pd.Series({
 	'grandine': 'yellow'
 })
 
+run_colors = pd.Series({
+    'feb2024': 'blueviolet',
+    'may2024': 'hotpink',
+})
+
 
 ################################################################################################
 # Run 1
@@ -55,48 +60,57 @@ cl_ip = {
 	"xxx.xxx.xxx.xxx": 	"teku",
 	"xxx.xxx.xxx.xxx": 	"nimbus",
 	"xxx.xxx.xxx.xxx": 	"lodestar",
-	"xxx.xxx.xxx.xxx": 		"grandine"
+	"xxx.xxx.xxx.xxx": 	"grandine"
+}
+
+cl_port = {
+	"9050": "xxx.xxx.xxx.xxx",
+	"9051": "xxx.xxx.xxx.xxx",
+	"9052": "xxx.xxx.xxx.xxx",
+	"9053": "xxx.xxx.xxx.xxx",
+	"9054": "xxx.xxx.xxx.xxx",
+	"9055": "xxx.xxx.xxx.xxx"
 }
 
 
 ################################################################################################
 
 ################################################################################################
-# Run 2
-phase = "run2"
-genesis_unix_time = 1606824023 		# Constant
-start_epoch = 280768  				# Start epoch you want to plot
-start_time = "2024-05-02T08:30:00Z"	# Start time from where you want to download into CSV Feb-04-2024 12:00:23 UTC
+# # Run 2
+# phase = "run2"
+# genesis_unix_time = 1606824023 		# Constant
+# start_epoch = 280768  				# Start epoch you want to plot
+# start_time = "2024-05-02T08:30:00Z"	# Start time from where you want to download into CSV Feb-04-2024 12:00:23 UTC
 
-default_epoch = 281128  				
-default_time = "2024-05-03T23:00:23Z"	
+# default_epoch = 281128  				
+# default_time = "2024-05-03T23:00:23Z"	
 
-all_subnets_epoch = 281958
-all_subnets_time = "2024-05-07T15:31:35Z"
+# all_subnets_epoch = 281958
+# all_subnets_time = "2024-05-07T15:31:35Z"
 
-default_blocks_epoch = 283279
-default_blocks_time = "2024-05-13T12:33:59Z"
+# default_blocks_epoch = 283279
+# default_blocks_time = "2024-05-13T12:33:59Z"
 
-all_subnets_blocks_epoch = 284147
-all_subnets_blocks_time = "2024-05-17T09:07:23Z"
+# all_subnets_blocks_epoch = 284147
+# all_subnets_blocks_time = "2024-05-17T09:07:23Z"
 
-end_base_experiment_epoch = 285027
-end_base_experiment_time = "2024-05-21T07:00:00Z"
+# end_base_experiment_epoch = 285027
+# end_base_experiment_time = "2024-05-21T07:00:00Z"
 
-end_epoch = 286402					# End epoch you want to plot
-end_time = "2024-05-27T09:39:59Z"	# End time from where you want to download into CSV
-duration = "25d"					# Duration from start to end (download)
+# end_epoch = 286402					# End epoch you want to plot
+# end_time = "2024-05-31T09:39:59Z"	# End time from where you want to download into CSV
+# duration = "25d"					# Duration from start to end (download)
 
-experiment_milestones = [default_time, all_subnets_time, default_blocks_time, all_subnets_blocks_time, end_base_experiment_time]
+# experiment_milestones = [default_time, all_subnets_time, default_blocks_time, all_subnets_blocks_time, end_base_experiment_time]
 
-cl_ip = {
-	"xxx.xxx.xxx.xxx": 	"prysm",
-	"xxx.xxx.xxx.xxx": 	"lighthouse",
-	"xxx.xxx.xxx.xxx": 	"teku",
-	"xxx.xxx.xxx.xxx": 	"nimbus",
-	"xxx.xxx.xxx.xxx": 	"lodestar",
-	"xxx.xxx.xxx.xxx": 		"grandine"
-}
+# cl_ip = {
+# 	"xxx.xxx.xxx.xxx": 	"prysm",
+# 	"xxx.xxx.xxx.xxx": 	"lighthouse",
+# 	"xxx.xxx.xxx.xxx": 	"teku",
+# 	"xxx.xxx.xxx.xxx": 	"nimbus",
+# 	"xxx.xxx.xxx.xxx": 	"lodestar",
+# 	"xxx.xxx.xxx.xxx": 		"grandine"
+# }
 
 ################################################################################################
 
@@ -120,7 +134,8 @@ def ask(query_str):
 
 def ask_range(query_str, i_start_time, i_end_time):
 	result = []
-	for port in [9099]:
+	# for port in [9099]:
+	for port in [9050, 9051, 9052, 9053, 9054, 9055]:
 		response = requests.get('http://' + prometheus_ip + ':' + str(port) + '/api/v1/query_range', params={
 			'query': query_str,
 			'start': i_start_time,
@@ -129,13 +144,14 @@ def ask_range(query_str, i_start_time, i_end_time):
 		try:
 			response_json = response.json()
 			response_data = response_json['data']['result']
+			response_data[0]['metric']['server'] = cl_port[str(port)]
 			result.extend(response_data)
 		except Exception as e:
 			print("could not get response: ", e)
 
 	return result
 
-def ask_range_with_step(query_str, i_start_time, i_end_time):
+def ask_range_with_step(query_str, i_start_time, i_end_time, step=step):
 	result = []
 	for port in [9099]:
 		response = requests.get('http://' + prometheus_ip + ':' + str(port) + '/api/v1/query_range', params={
@@ -200,7 +216,7 @@ def data_to_csv(query_response, metric_name):
 				df.to_csv(file_path, mode='a', header=False)
 
 
-def import_csv(metric):
+def import_csv(metric, csv_folder=csv_folder):
 	df_prysm = pd.read_csv(f"{csv_folder}prysm_{metric}.csv")
 	df_lighthouse = pd.read_csv(f"{csv_folder}lighthouse_{metric}.csv")
 	df_teku = pd.read_csv(f"{csv_folder}teku_{metric}.csv")

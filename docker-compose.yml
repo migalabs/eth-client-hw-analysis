@@ -102,6 +102,7 @@ services:
       --execution-endpoint=http://nethermind:8551
       --monitoring-host=0.0.0.0
       --rpc-host=0.0.0.0
+      --grpc-gateway-host=0.0.0.0
       --jwt-secret=/tmp/ethereum/jwtsecret
       --log-file=/prysmdb/prysm.log
     volumes:
@@ -167,6 +168,7 @@ services:
       --network=${NETWORK}
       --web3-url=http://nethermind:8551
       --rest
+      --rest-address=0.0.0.0
       --metrics
       --jwt-secret=/tmp/ethereum/jwtsecret
       --log-file=/nimbusdb/nimbus.log
