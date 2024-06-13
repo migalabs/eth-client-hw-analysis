@@ -1,6 +1,10 @@
 from base import *
 
 
+# This main func will download data on a per second basis
+# It will loop over the given times with a step of 3 hours and eventually download all data points from Prometheus
+# This is needed because Prometheus only answers with 11k points
+ 
 def main():
 
 	lstart_time = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%SZ')
@@ -49,9 +53,9 @@ def main():
 		download_net_transmit_packets(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
 			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
 			step="1s")
-		# download_net_transmit_per_second_default(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
-			#(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
-			#step="1s")
+		download_net_transmit_per_second_default(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
+			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			step="1s")
 
 		download_peers(tmp_time.strftime("%Y-%m-%dT%H:%M:%SZ"), 
 			(tmp_time + timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -80,32 +84,35 @@ def main():
 		tmp_time = tmp_time + timedelta(hours=3)
 
 
+# This main func will download data every 20m
+# This allows to do a single query to Prometheus and return less than 11k points per timesries for a full run
+		
 def main_20m():
-		# download_cpu()
-		# download_cpu_per_second_default()
-		# download_cpu_per_second_all_topics()
+		download_cpu()
+		download_cpu_per_second_default()
+		download_cpu_per_second_all_topics()
 
-		# download_mem()
-		# download_mem_without_rss()
+		download_mem()
+		download_mem_without_rss()
 
-		# download_net_receive()
-		# download_net_receive_packets()
+		download_net_receive()
+		download_net_receive_packets()
 		download_net_receive_per_second_default()
 		download_net_receive_per_second_all_topics()
 
-		# download_net_transmit()
+		download_net_transmit()
 		download_net_transmit_packets()
 		download_net_transmit_per_second_default()
 
-		# download_peers()
+		download_peers()
 
-		# download_fs_read_bytes()
-		# download_fs_read_ops()
+		download_fs_read_bytes()
+		download_fs_read_ops()
 
-		# download_fs_write_bytes()
-		# download_fs_write_ops()
+		download_fs_write_bytes()
+		download_fs_write_ops()
 
-		# download_disk_usage()
+		download_disk_usage()
 
 		# # download_block_proposals()
 	

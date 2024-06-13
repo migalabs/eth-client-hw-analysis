@@ -2,31 +2,31 @@ from base import *
 import plotly.graph_objects as go
 
 def main():
-	# plot_cpu()
+	plot_cpu()
 	# plot_cpu_per_second_default()
 	# plot_cpu_per_second_all_topics()
 
-	# plot_mem()
-	# plot_mem_without_rss()
+	plot_mem()
+	plot_mem_without_rss()
 
-	# plot_net_receive()
-	# plot_net_receive_packets()
-	plot_net_receive_per_second_default()
+	plot_net_receive()
+	plot_net_receive_packets()
+	# plot_net_receive_per_second_default()
 	# plot_net_receive_per_second_all_topics()
 
-	# plot_net_transmit()
-	# plot_net_transmit_packets()
+	plot_net_transmit()
+	plot_net_transmit_packets()
 	# plot_net_transmit_per_second_default()
 
-	# plot_peers()
+	plot_peers()
 
-	# plot_fs_read_bytes()
-	# plot_fs_read_ops()
+	plot_fs_read_bytes()
+	plot_fs_read_ops()
 
-	# plot_fs_write_bytes()
-	# plot_fs_write_ops()
+	plot_fs_write_bytes()
+	plot_fs_write_ops()
 
-	# plot_disk_usage()
+	plot_disk_usage()
 
 	# plot_block_proposals()
 
