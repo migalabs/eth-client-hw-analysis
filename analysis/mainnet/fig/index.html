@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Ethereum Hardware Analysis v3</title>
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="./style.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+	<body>
+		<main class="d-flex justify-content-center">
+			<h1>Ethereum Hardware Analysis v3</h1>  
+		</main>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 justify-content-center">
+					<h1 style="text-align:center;"> First Run (Feb 2024) </h1>
+					<div class="row">
+
+						<div class="col-md-8">
+							<table class="table shadow">
+								<thead>
+								  <tr>
+									<th scope="col">Phase</th>
+									<th scope="col">Start time</th>
+									<th scope="col">End time</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th scope="row">Default mode</th><td>2024-02-04T12:00:23Z</td><td>2024-02-08T17:20:23Z</td>
+								  </tr>
+								  <tr>
+									<th scope="row">All Subnets mode</th><td>2024-02-08T17:20:23Z</td><td>2024-02-12T14:33:59Z</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Default with block simulation in every slot</th><td>2024-02-12T14:33:59Z</td><td>2024-02-16T10:16:23Z</td>
+								  </tr>
+								  <tr>
+									<th scope="row">All subnets with block simulation in every slot</th><td>2024-02-16T10:16:23Z</td><td>2024-02-19T21:36:23Z</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>
+						
+						 <div class="col-md-4">
+							<table class="table shadow">
+								<thead>
+								  <tr>
+									<th scope="col">Client</th>
+									<th scope="col">Version time</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th scope="row">Prysm</th><td>v4.2.1</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Lighthouse</th><td>v4.6.0</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Teku</th><td>v24.1.1</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Nimbus</th><td>v24.2.0</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Lodestar</th><td>v1.15.0</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Grandine</th><td>unstable</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>
+						
+					</div>
+					
+					
+					  
+				</div>
+				<div class="col-md-6 justify-content-center">
+					<h1 style="text-align:center;"> Second Run (May 2024) </h1>
+					<div class="row">
+
+						<div class="col-md-8">
+							<table class="table shadow">
+								<thead>
+								  <tr>
+									<th scope="col">Phase</th><th scope="col">Start time</th><th scope="col">End time</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th scope="row">Default mode</th><td>2024-05-03T23:00:23Z</td><td>2024-05-07T15:31:35Z</td>
+								  </tr>
+								  <tr>
+									<th scope="row">All Subnets mode</th><td>2024-05-07T15:31:35Z</td><td>2024-05-13T12:33:59Z</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Default with block simulation in every slot</th><td>2024-05-13T12:33:59Z</td><td>2024-05-17T09:07:23Z</td>
+								  </tr>
+								  <tr>
+									<th scope="row">All subnets with block simulation in every slot</th><td>2024-05-17T09:07:23Z</td><td>2024-05-21T07:00:00Z</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>
+						
+						 <div class="col-md-4">
+							<table class="table shadow">
+								<thead>
+								  <tr>
+									<th scope="col">Client</th>
+									<th scope="col">Version time</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th scope="row">Prysm</th><td>v5.0.3</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Lighthouse</th><td>v5.1.3</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Teku</th><td>v24.4.0</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Nimbus</th><td>v24.4.0</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Lodestar</th><td>v1.18</td>
+								  </tr>
+								  <tr>
+									<th scope="row">Grandine</th><td>0.4.0</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		<div class="container-fluid">
+			<h2 class="d-flex justify-content-center"> CPU Usage of CL clients </h2>
+			<div class="row">
+
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/cpu.html"></iframe>
+				</div>
+				
+				 <div class="col-md-6">
+					<iframe class="shadow" src="./run2/cpu.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Memory Usage of CL clients (machine with 44GB) </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/mem.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/mem.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+			
+			<h2 class="d-flex justify-content-center"> Memory Usage (removing RSS) of CL clients (machine with 44GB) </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/mem_without_rss.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/mem_without_rss.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Network (Incoming) Bandwidth Usage of CL clients </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/net_receive.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/net_receive.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Network (Incoming) Packet Rate of CL clients </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/net_receive_packets.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/net_receive_packets.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Network (Outgoing) Bandwidth Usage of CL clients </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/net_transmit.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/net_transmit.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Network (Outgoing) Packet Rate of CL clients </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/net_transmit_packets.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/net_transmit_packets.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Disk Read Bytes Per Second </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/fs_read_bytes.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/fs_read_bytes.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Disk Read Ops/s </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/fs_read_ops.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/fs_read_ops.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Disk Write Bytes Per Second </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/fs_write_bytes.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/fs_write_bytes.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Disk Write Ops/s </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/fs_write_ops.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/fs_write_ops.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Peer Number of CL clients </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/peers.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/peers.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Disk Usage </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/disk_usage.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/disk_usage.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Block Proposals </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/block_proposals.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/block_proposals.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> CPU Usage inside the Slot (whole machine) (Default) </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/cpu_per_second_default.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/cpu_per_second_default.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> CPU Usage inside the Slot (whole machine) (All Subnets) </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/cpu_per_second_all_topics.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/cpu_per_second_all_topics.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Network (Incoming) Bandwidth Usage of CL clients inside the Slot (whole machine) (Default) </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/net_receive_per_second_default.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/net_receive_per_second_default.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+
+			<h2 class="d-flex justify-content-center"> Network (Incoming) Bandwidth Usage of CL clients inside the Slot (whole machine) (All Subnets) </h2>
+			<div class="row">
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run1/net_receive_per_second_all_topics.html" width="100%" height="500"></iframe>
+				</div>
+				<div class="col-md-6">
+					<iframe class="shadow" src="./run2/net_receive_per_second_all_topics.html" width="100%" height="500"></iframe>
+				</div>
+			</div>
+		
+		</div>
+	</body>
+</html>
