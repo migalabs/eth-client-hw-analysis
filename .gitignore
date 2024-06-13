@@ -1,2 +1,10 @@
 venv/
 *.zip
+.env
+Caddyfile
+apps-data/**
+data/**
+prometheus/prometheus.yml
+analysis/mainnet/fig/run*
+analysis/mainnet/csv/run*
+*pycache*
